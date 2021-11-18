@@ -1,10 +1,15 @@
 {
   "name": "vue-jssdk",
-  "version": "0.1.0",
+  "version": "0.0.1",
+  "sdkId": "jssdk-001",
+  "sdkName": "__JSSDK__",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve --env=local",
+    "build": "vue-cli-service build --env=local",
+    "buildtest": "vue-cli-service build --env=test",
+    "buildpre": "vue-cli-service build --env=pre",
+    "buildprod": "vue-cli-service build --env=prod",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

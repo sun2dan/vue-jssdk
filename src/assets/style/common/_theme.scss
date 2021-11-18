@@ -1,0 +1,14 @@
+a {
+    color: $theme;
+}
+.js-link {
+    color: $theme;
+}
+.js-link:hover {
+    color: rgba($theme, 0.9) !important;
+}
+
+.js-link.js-disabled,
+.js-link.js-disabled:hover {
+    color: #999 !important;
+}

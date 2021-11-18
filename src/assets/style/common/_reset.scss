@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+  font-weight: inherit;
+  box-sizing: border-box;
+}
+menu,
+ol,
+ul {
+  list-style: none;
+}
+a {
+  background: transparent;
+  text-decoration: none;
+}
+input,
+select {
+  vertical-align: middle;
+}
+body,
+input,
+textarea {
+  font-family: San Francisco, PingFang SC, Hiragino Sans GB, Segoe UI, Microsoft Yahei, 微软雅黑, Tahoma, Arial,
+    sans-serif;
+}

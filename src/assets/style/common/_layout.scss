@@ -1,0 +1,94 @@
+/* Flex justify content */
+.js-flex {
+  display: flex;
+}
+.js-flex-inline {
+  display: inline-flex;
+}
+.js-flex-wrap {
+  flex-wrap: wrap;
+}
+.js-flex-vertical {
+  flex-direction: column;
+}
+.js-flex-start {
+  justify-content: flex-start;
+  text-align: start;
+}
+.js-flex-center {
+  justify-content: center;
+  text-align: center;
+}
+.js-flex-end {
+  justify-content: flex-end;
+  text-align: end;
+}
+.js-flex-between {
+  justify-content: space-between;
+}
+.js-flex-baseline {
+  align-items: baseline;
+}
+.js-flex-top {
+  align-items: flex-start;
+}
+.js-flex-middle {
+  align-items: center;
+}
+.js-flex-bottom {
+  align-items: flex-end;
+}
+.js-flex-mm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.js-flex-m {
+  display: flex;
+  align-items: center;
+}
+
+// abs
+.js-abs-mm {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.js-abs-lt {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.js-abs-lm {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.js-abs-lb {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.js-abs-rt {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.js-abs-rb {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.js-abs-rm {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.js-pr {
+  position: relative;
+}
