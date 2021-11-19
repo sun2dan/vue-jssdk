@@ -1,0 +1,14 @@
+@charset 'utf-8';
+@import "./common/var";
+@import "common/common";
+
+.#{$sdkId} {
+    @import "common/theme";
+    @import "common/zindex";
+
+    position: absolute;
+    z-index: 10001;
+    color: $main;
+    font-size: 14px;
+    line-height: 1;
+}

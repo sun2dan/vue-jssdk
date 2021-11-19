@@ -1,94 +1,94 @@
 /* Flex justify content */
-.js-flex {
+.sdk-flex {
   display: flex;
 }
-.js-flex-inline {
+.sdk-flex-inline {
   display: inline-flex;
 }
-.js-flex-wrap {
+.sdk-flex-wrap {
   flex-wrap: wrap;
 }
-.js-flex-vertical {
+.sdk-flex-vertical {
   flex-direction: column;
 }
-.js-flex-start {
+.sdk-flex-start {
   justify-content: flex-start;
   text-align: start;
 }
-.js-flex-center {
+.sdk-flex-center {
   justify-content: center;
   text-align: center;
 }
-.js-flex-end {
+.sdk-flex-end {
   justify-content: flex-end;
   text-align: end;
 }
-.js-flex-between {
+.sdk-flex-between {
   justify-content: space-between;
 }
-.js-flex-baseline {
+.sdk-flex-baseline {
   align-items: baseline;
 }
-.js-flex-top {
+.sdk-flex-top {
   align-items: flex-start;
 }
-.js-flex-middle {
+.sdk-flex-middle {
   align-items: center;
 }
-.js-flex-bottom {
+.sdk-flex-bottom {
   align-items: flex-end;
 }
-.js-flex-mm {
+.sdk-flex-mm {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
-.js-flex-m {
+.sdk-flex-m {
   display: flex;
   align-items: center;
 }
 
 // abs
-.js-abs-mm {
+.sdk-abs-mm {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.js-abs-lt {
+.sdk-abs-lt {
   position: absolute;
   left: 0;
   top: 0;
 }
-.js-abs-lm {
+.sdk-abs-lm {
   position: absolute;
   left: 0;
   top: 50%;
   transform: translate(0, -50%);
 }
-.js-abs-lb {
+.sdk-abs-lb {
   position: absolute;
   left: 0;
   bottom: 0;
 }
-.js-abs-rt {
+.sdk-abs-rt {
   position: absolute;
   right: 0;
   top: 0;
 }
-.js-abs-rb {
+.sdk-abs-rb {
   position: absolute;
   right: 0;
   bottom: 0;
 }
-.js-abs-rm {
+.sdk-abs-rm {
   position: absolute;
   right: 0;
   top: 50%;
   transform: translate(0, -50%);
 }
 
-.js-pr {
+.sdk-pr {
   position: relative;
 }

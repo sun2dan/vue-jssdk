@@ -1,11 +1,11 @@
 @charset "utf-8";
 
 /* ------- fade ------- */
-.js-fade-enter-active,
-.js-fade-leave-active {
+.sdk-fade-enter-active,
+.sdk-fade-leave-active {
     transition: opacity linear $time;
 }
-.js-fade-enter,
-.js-fade-leave-to {
+.sdk-fade-enter,
+.sdk-fade-leave-to {
     opacity: 0;
 }

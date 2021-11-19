@@ -4,41 +4,41 @@
 @import "./ani";
 @import "./layout";
 
-.js-w100 {
+.sdk-w100 {
     width: 100%;
 }
-.js-full {
+.sdk-full {
     width: 100%;
     height: 100%;
 }
-.js-ellips {
+.sdk-ellips {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.js-ellips2,
-.js-ellips4 {
+.sdk-ellips2,
+.sdk-ellips4 {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
-.js-ellips4 {
+.sdk-ellips4 {
     -webkit-line-clamp: 4;
 }
-.js-nowrap {
+.sdk-nowrap {
     white-space: nowrap;
 }
 
-.js-link {
+.sdk-link {
     font-size: 14px;
     transition: all ease $time;
     cursor: pointer;
-    & + .js-link {
+    & + .sdk-link {
         margin-left: 20px;
     }
-    &.js-disabled {
+    &.sdk-disabled {
         cursor: not-allowed;
     }
 }
