@@ -41,7 +41,7 @@ process.env.VUE_APP_SDKID = npm_package_sdkId;
 process.env.VUE_APP_SDKNAME = npm_package_sdkName;
 console.log(VUE_APP_BASEURL, VUE_PUBLIC_PATH, env);
 
-// require('./before_run');
+require('./before_run');
 
 module.exports = {
     lintOnSave: false,

@@ -1,6 +1,12 @@
+/**
+ * title: sdk入口文件
+ * email: supericesun@gmail.com
+ */
+
 (function () {
-    const path = '//test.local.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1637232736416;;
+    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1637635087529;
     const isLocal = env === 'local', isTest = env === 'test', isProd = env === 'prod';
+    // 最终打包出来的js和css文件，只引入口文件，根据实际打包出来的文件动态配置
     const cssArr = ['css/chunk-vendors.css', 'css/app.css'];
     const jsArr = ['js/chunk-vendors.js', 'js/app.js'];
 

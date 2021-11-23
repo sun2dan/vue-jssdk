@@ -1,5 +1,7 @@
 <template>
-  <div :class="sdkId"></div>
+  <div :class="sdkId">
+    这里是内容
+  </div>
 </template>
 
 <script>
