@@ -1,26 +1,108 @@
 <template>
   <div :class="sdkId">
-    这里是内容
+    <com-list-panel ref="comListPanel"></com-list-panel>
   </div>
 </template>
 
 <script>
+import sdk from "./mixins/sdk";
+import sdkUtils from "./utils/sdkUtils";
+import customCss from "./utils/customCss";
+
+import ComListPanel from "./components/ComListPanel.vue";
+
 export default {
   name: "App",
-  components: {},
+  mixins: [sdk],
+  components: { ComListPanel },
   props: {},
   data() {
-    return {
-      sdkId: "",
-    };
+    return {};
   },
-  computed: {},
   watch: {},
   created() {
-    this.sdkId = process.env.VUE_APP_SDKID;
+    let winObj = sdkUtils.getSdkObj();
+    let options = winObj.getOption() || {};
+    this.refresh(options);
+
+    // 重写对外接口
+    winObj.setOption = (opts) => {
+      let options = { isSet: !!opts };
+      Object.assign(options, opts);
+      this.refresh(options);
+    };
   },
-  mounted() {},
-  methods: {},
+  async mounted() {
+    let winObj = sdkUtils.getSdkObj();
+    let isShow = winObj.getIsShow();
+    let comListPanel = this.$refs.comListPanel;
+
+    if (isShow) {
+      await this.$nextTick();
+      comListPanel.show();
+    }
+
+    // 重写对外接口：显示任务面板
+    winObj.showPanel = () => {
+      console.log("showPanel");
+      comListPanel.show();
+    };
+  },
+  methods: {
+    refresh(options) {
+      sdkUtils.saveOption(options);
+      this.options = options;
+
+      if (options.isSet) {
+        this.updateThemeColor();
+        this.updateZIndex();
+        this.setIconFont();
+      }
+    },
+    // ---------- 字体 iconfont ----------
+    setIconFont() {
+      let style = document.createElement("style");
+      style.type = "text/css";
+      style.innerHTML = customCss.iconfont;
+      document.head.appendChild(style);
+    },
+
+    // ---------- z-index ----------
+    updateZIndex() {
+      let { zIndex } = this.options;
+      if (!zIndex) return;
+
+      let styleStr = customCss.zIndex;
+      styleStr = styleStr.replace(/z-index:\d+/g, `z-index:${zIndex}`);
+      sdkUtils.appendStyle(styleStr, "shadow");
+
+      let shadowHost = document.querySelector(`.${this.sdkId}_box`);
+      if (!shadowHost) return;
+      shadowHost.style.zIndex = zIndex;
+    },
+
+    // ---------- 设置主题色 ----------
+    updateThemeColor() {
+      let { themeColor, activeColor } = this.options;
+      if (!themeColor && !activeColor) return;
+      let styleStr = utils.getThemeStr(customCss.theme, {
+        theme: themeColor,
+        active: activeColor,
+      });
+      sdkUtils.appendStyle(styleStr, "shadow");
+    },
+
+    // ---------- 任务相关 ----------
+    showTask(task) {
+      this.curTaskData = task;
+      this.taskVideoVisible = true;
+    },
+    showImgSlider(imgList) {
+      this.$set(this, "imgList", imgList);
+      this.$refs.imgPrev.show();
+    },
+  },
+  computed: {},
 };
 </script>
 

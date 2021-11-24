@@ -23,8 +23,8 @@ let sdkUtils = {
         return options[key];
     },
 
-    // 获取全局对象
-    getWinObj() {
+    // 获取全局SDK对象
+    getSdkObj() {
         window[SDKNAME] = window[SDKNAME] || {};
         let obj = window[SDKNAME];
         let validFns = ['setOption', 'getOption'];
