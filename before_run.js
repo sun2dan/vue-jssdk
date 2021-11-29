@@ -83,7 +83,13 @@ const updateEnterVar = () => {
     let jsPath = `./public/jssdk.js`;
     let cont = fs.readFileSync(jsPath, 'utf-8');
     let arr = cont.split('\n');
-    arr[1] = `    const path = '${VUE_PUBLIC_PATH}', env = '${VUE_ENV}', sdkName = '${VUE_APP_SDKNAME}', sdkId = '${sdkId}', ts = ${Date.now()};`;
+    for (let i = 0, len = arr.length; i < len; i++) {
+        const str = arr[i];
+        if (/\s+const\s+path\s+=\s+/gmi.test(str)) {
+            arr[i] = `    const path = '${VUE_PUBLIC_PATH}', env = '${VUE_ENV}', sdkName = '${VUE_APP_SDKNAME}', sdkId = '${sdkId}', ts = ${Date.now()};`;
+            break;
+        }
+    }
     fs.writeFileSync(jsPath, arr.join('\n'));
 };
 
