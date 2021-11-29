@@ -4,17 +4,17 @@
  */
 
 (function () {
-    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1638225913461;
+    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1638226107207;
     const isLocal = env === 'local', isTest = env === 'test', isProd = env === 'prod';
     // 最终打包出来的js和css文件，只引入口文件，根据实际打包出来的文件动态配置
-    const cssArr = ['css/chunk-vendors.css', 'css/app.css'];
+    const cssArr = ['css/app.css'];
     const jsArr = ['js/chunk-vendors.js', 'js/app.js'];
     let timer = null;
 
     try {
         detectBody();
     } catch (e) {
-        console.log('消息中心报错', e);
+        console.log('JSSDK报错', e);
     }
 
     function detectBody() {
