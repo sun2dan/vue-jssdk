@@ -8,9 +8,14 @@
   <title>
     <%= htmlWebpackPlugin.options.title %>
   </title>
+  <style>
+    body {
+      background: #f7f8f9;
+    }
+  </style>
 </head>
 <body>
-  <button id="trigger_box"></button>
+  <button id="trigger_box">显示弹层</button>
   <script src='./jssdk.js'></script>
   <script>
     (function () {

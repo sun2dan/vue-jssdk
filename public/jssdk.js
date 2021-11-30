@@ -4,7 +4,7 @@
  */
 
 (function () {
-    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1638226107207;
+    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1638226251784;
     const isLocal = env === 'local', isTest = env === 'test', isProd = env === 'prod';
     // 最终打包出来的js和css文件，只引入口文件，根据实际打包出来的文件动态配置
     const cssArr = ['css/app.css'];
@@ -25,34 +25,34 @@
         }, 100);
     }
 
-    function main(){
-    // ---------- 创建shadowdom ----------
-    let box = document.createElement('div');
-    box.id = '__jssdk_box';
-    // box.style.setProperty('position', 'fixed', 'important');
-    box.style = `position:fixed; left:0; top:0; z-index: 10001`;
-    document.body.appendChild(box);
+    function main() {
+        // ---------- 创建shadowdom ----------
+        let box = document.createElement('div');
+        box.id = '__jssdk_box';
+        // box.style.setProperty('position', 'fixed', 'important');
+        box.style = `position:fixed; left:0; top:0; z-index: 10001`;
+        document.body.appendChild(box);
 
-    // 本地走普通 html 元素，其他环境走 shadowdom
-    let shadow = isLocal ? box : box.attachShadow({ mode: 'open' });
-    window.__JSSDK_BOX = shadow;
+        // 本地走普通 html 元素，其他环境走 shadowdom
+        let shadow = isLocal ? box : box.attachShadow({ mode: 'open' });
+        window.__JSSDK_BOX = shadow;
 
-    // 每次build之后会更新时间戳，尽量减少缓存
-    let tsStr = `?t=${ts}`;
-    cssArr.forEach(function (href) {
-        const link = document.createElement('link');
-        link.href = `${path}${href}${tsStr}`;
-        link.rel = 'stylesheet';
-        !isLocal && shadow.appendChild(link);
-    });
+        // 每次build之后会更新时间戳，尽量减少缓存
+        let tsStr = `?t=${ts}`;
+        cssArr.forEach(function (href) {
+            const link = document.createElement('link');
+            link.href = `${path}${href}${tsStr}`;
+            link.rel = 'stylesheet';
+            !isLocal && shadow.appendChild(link);
+        });
 
-    jsArr.forEach(function (src) {
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = `${path}${src}${tsStr}`;
-        !isLocal && shadow.appendChild(script);
-    });
-}
+        jsArr.forEach(function (src) {
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = `${path}${src}${tsStr}`;
+            !isLocal && shadow.appendChild(script);
+        });
+    }
 
     // ---------- 对外接口 ----------
     let options = {}, isShow = false;
