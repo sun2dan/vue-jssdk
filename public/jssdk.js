@@ -56,7 +56,8 @@
     }
 
     // ---------- 对外接口 ----------
-    let options = {}, isShow = false;
+    let options = {};
+    let localVars = { isShow: false, isClose: false, isRefresh: false };
     window[sdkName] = window[sdkName] || {};
 
     // 配置项
@@ -74,9 +75,10 @@
 
     // 显示相关
     window[sdkName].showMgt = function () {
-        isShow = true;
+        localVars.isShow = true;
     };
-    window[sdkName].getIsShow = function () {
-        return isShow;
+    window[sdkName].getVars = function (key) {
+        if (key) return localVars[key];
+        return localVars;
     };
 })();

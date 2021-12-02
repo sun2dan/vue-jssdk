@@ -34,10 +34,10 @@ export default {
   },
   async mounted() {
     let winObj = sdkUtils.getSdkObj();
-    let isShow = winObj.getIsShow();
+    let vars = winObj.getVars();
     let comListPanel = this.$refs.comListPanel;
 
-    if (isShow) {
+    if (vars.isShow) {
       await this.$nextTick();
       comListPanel.show();
     }
