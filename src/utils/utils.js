@@ -133,7 +133,6 @@ let utils = {
 
             let regexp = new RegExp(`rgba\\(\\$${key}\,([\\d\.]+)\\)`, 'gmi'); // rgba(#ffa, .8)的形式转换成 rgba(r, g, b, a) 的形式
             let reg = new RegExp(`\\$${key}`, 'gmi');
-            console.log(regexp, reg, key, color);
 
             styleStr = styleStr.replace(regexp, `rgba(${rgbStr},$1)`).replace(reg, color);
         }

@@ -1,3 +1,7 @@
+/**
+主题色，该文件内容会当做字符串拿到js中进行处理，$theme 会替换成集成系统配置的主题色，
+需要按照css格式写，不能用嵌套等scss语法
+*/
 a {
     color: $theme;
 }
@@ -8,7 +12,16 @@ a {
     color: rgba($theme, 0.9) !important;
 }
 
+// 非主题色相关的状态颜色也放到这里，方便控制优先级
 .sdk-link.sdk-disabled,
 .sdk-link.sdk-disabled:hover {
     color: #999 !important;
 }
+
+.sdk-btn {
+    background: $theme;
+}
+.sdk-btn:hover {
+    background: rgba($theme, 0.9);
+}
+// ---- list页面 ----

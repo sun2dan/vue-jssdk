@@ -6,6 +6,7 @@
 
 <script>
 import sdk from "./mixins/sdk";
+import utils from "./utils/utils";
 import sdkUtils from "./utils/sdkUtils";
 import customCss from "./utils/customCss";
 

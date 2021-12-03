@@ -24,7 +24,7 @@
       setTimeout(function () {
         window[sdkName].setOption({
           zIndex: 100, // 弹层的z-index，系统默认z-index为 10001，按需增减
-          // themeColor: '#2b8fcc',
+          themeColor: '#f00',
           // activeColor: '#ffaacc'
         });
       }, 10);
@@ -36,7 +36,6 @@
       document.querySelector('#trigger_box').onclick = function () {
         window[sdkName].showPanel();
       };
-
     })();
   </script>
 </body>
