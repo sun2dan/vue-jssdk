@@ -12,6 +12,9 @@
     const jsArr = ['js/chunk-vendors.js', 'js/app.js'];
     let timer = null;
 
+    // 已经加载过就不再执行
+    if (win.__JSSDK_BOX) return;
+
     try {
         detectBody();
     } catch (e) {
