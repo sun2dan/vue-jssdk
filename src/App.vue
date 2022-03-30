@@ -90,11 +90,12 @@ export default {
       let { zIndex } = this.options;
       if (!zIndex) return;
 
-      let styleStr = customCss.zIndex;
-      styleStr = styleStr.replace(/z-index:\d+/g, `z-index:${zIndex}`);
-      sdkUtils.appendStyle(styleStr, "shadow");
+      // shadowdom 内部无需设置zIndex
+      // let styleStr = customCss.zIndex;
+      // styleStr = styleStr.replace(/z-index:\d+/g, `z-index:${zIndex}`);
+      // sdkUtils.appendStyle(styleStr, "zIndex", "shadow");
 
-      let shadowHost = document.querySelector(`.${this.sdkId}_box`);
+      let shadowHost = document.querySelector(`#__jssdk_box`);
       if (!shadowHost) return;
       shadowHost.style.zIndex = zIndex;
     },
@@ -107,7 +108,7 @@ export default {
         theme: themeColor,
         active: activeColor,
       });
-      sdkUtils.appendStyle(styleStr, "shadow");
+      sdkUtils.appendStyle(styleStr, "theme", "shadow");
     },
 
     // ---------- 任务相关 ----------

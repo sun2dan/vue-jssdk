@@ -8,7 +8,7 @@ import utils from "./utils";
 let SDKNAME = process.env.VUE_APP_SDKNAME;
 let options = {};
 
-let styelArrMap = { shadow: [], body: [] }; // 样式数组，把多个需要添加style的操作合并到一个操作中
+let styelArrMap = { }; // 样式数组，把多个需要添加style的操作合并到一个操作中
 let timer = { shadow: null, body: null };
 
 let sdkUtils = {
@@ -47,21 +47,30 @@ let sdkUtils = {
         console.log(content, `color:${color || 'blue'}`, ...info);
     },
 
-    // 往body或shadow中添加style标签，50ms内的样式合并添加
-    appendStyle(styleStr, type = "body") {
-        let arr = styelArrMap[type];
+    // 往body或shadow中添加style标签，100ms内的样式合并添加
+    appendStyle(styleStr, name, type = "shadow") {
+        let id = `style_${name}`;
+        styelArrMap[name] = styelArrMap[name] || [];
+        let arr = styelArrMap[name];
         arr.push(styleStr);
-        clearTimeout(timer[type]);
+        clearTimeout(timer[name]);
 
-        timer[type] = setTimeout(() => {
-            let style = document.createElement("style");
+        timer[name] = setTimeout(() => {
+            let box = type === 'body' ? document.body : window.__JSSDK_BOX;
+            let style = box.querySelector(`#${id}`);
+
+            // iconfont 只加载一次，因为SaaSWings下有三个jssdk，都会添加iconfont
+            if (name === 'iconfont' && style && style.innerText.length > 100) return;
+
+            if (!style) style = document.createElement("style");
             style.innerHTML = arr.join("").replace(/\n\s+/g, "\n");
             style.type = "text/css";
-            style.role = "nc";
-            let box = type === 'body' ? document.body : window.__JSSDK_BOX;
-            box.appendChild(style);
+            style.id = id;
+            style.setAttribute('role', "jssdk");
+            style.setAttribute('from', "saaswings");
 
-            styelArrMap[type] = [];
+            box.appendChild(style);
+            styelArrMap[name] = [];
         }, 50);
     },
 }
