@@ -4,13 +4,14 @@
  */
 
 (function () {
-    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1638495816554;
+    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1648604601255;
     const isLocal = env === 'local', isTest = env === 'test', isProd = env === 'prod';
     // 最终打包出来的js和css文件，只引入口文件，根据实际打包出来的文件动态配置
     !isProd && console.log('jssdk版本：', new Date(ts).toLocaleString('zh'));
     const cssArr = ['css/app.css'];
     const jsArr = ['js/chunk-vendors.js', 'js/app.js'];
     let timer = null;
+    let win = window.rawWindow || window.frames || window;
 
     // 已经加载过就不再执行
     if (win.__JSSDK_BOX) return;
@@ -39,7 +40,7 @@
 
         // 本地走普通 html 元素，其他环境走 shadowdom
         let shadow = isLocal ? box : box.attachShadow({ mode: 'open' });
-        window.__JSSDK_BOX = shadow;
+        win.__JSSDK_BOX = shadow;
 
         // 每次build之后会更新时间戳，尽量减少缓存
         let tsStr = `?t=${ts}`;
@@ -61,10 +62,10 @@
     // ---------- 对外接口 ----------
     let options = {};
     let localVars = { isShow: false, isClose: false, isRefresh: false };
-    window[sdkName] = window[sdkName] || {};
+    win[sdkName] = win[sdkName] || {};
 
     // 配置项
-    window[sdkName].setOption = function (opts) {
+    win[sdkName].setOption = function (opts) {
         let res = { isSet: false };
         Object.assign(res, opts);
         if (opts) res.isSet = true;
@@ -72,15 +73,15 @@
     };
 
     // 获取option，一开始可能会用到，之后统一从 utils.getOption() 获取
-    window[sdkName].getOption = function () {
+    win[sdkName].getOption = function () {
         return options;
     };
 
     // 显示相关
-    window[sdkName].showMgt = function () {
+    win[sdkName].showMgt = function () {
         localVars.isShow = true;
     };
-    window[sdkName].getVars = function (key) {
+    win[sdkName].getVars = function (key) {
         if (key) return localVars[key];
         return localVars;
     };
