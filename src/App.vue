@@ -32,6 +32,8 @@ export default {
       Object.assign(options, opts);
       this.refresh(options);
     };
+
+    this.moveStyleToShadow();
   },
   async mounted() {
     let winObj = sdkUtils.getSdkObj();
@@ -49,7 +51,22 @@ export default {
       comListPanel.show();
     };
   },
+  updated() {
+    this.moveStyleToShadow();
+  },
   methods: {
+    // 本地，同步style标签样式到shadowdom中
+    moveStyleToShadow() {
+      if (process.env.VUE_APP_ENV !== "local") return;
+
+      let eles = document.querySelectorAll("style");
+      for (let i = eles.length - 1; i >= 0; i--) {
+        let style = document.createElement("style");
+        style.innerText = eles[i].innerText;
+        window.__JSSDK_BOX.appendChild(style);
+      }
+    },
+
     refresh(options) {
       sdkUtils.saveOption(options);
       this.options = options;

@@ -4,7 +4,7 @@
  */
 
 (function () {
-    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1648604601255;
+    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1648605746013;
     const isLocal = env === 'local', isTest = env === 'test', isProd = env === 'prod';
     // 最终打包出来的js和css文件，只引入口文件，根据实际打包出来的文件动态配置
     !isProd && console.log('jssdk版本：', new Date(ts).toLocaleString('zh'));
@@ -38,8 +38,8 @@
         box.style = `position:fixed; left:0; top:0; z-index: 10001`;
         document.body.appendChild(box);
 
-        // 本地走普通 html 元素，其他环境走 shadowdom
-        let shadow = isLocal ? box : box.attachShadow({ mode: 'open' });
+        // 所有环境直接走 shadowdom
+        let shadow = box.attachShadow({ mode: 'open' }); // isLocal ? box : box.attachShadow({ mode: 'open' }); // 本地走普通 html 元素，其他环境走 shadowdom
         win.__JSSDK_BOX = shadow;
 
         // 每次build之后会更新时间戳，尽量减少缓存

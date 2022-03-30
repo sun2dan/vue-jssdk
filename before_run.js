@@ -1,6 +1,6 @@
 let fs = require('fs');
 
-let { VUE_PUBLIC_PATH, VUE_ENV, VUE_APP_SDKNAME, VUE_APP_SDKID } = process.env;
+let { VUE_PUBLIC_PATH, VUE_APP_ENV, VUE_APP_SDKNAME, VUE_APP_SDKID } = process.env;
 const sdkId = VUE_APP_SDKID;
 const sdkCls = `.${sdkId}`;
 
@@ -38,8 +38,8 @@ const handleScss2Js = {
 
         // 注意replace顺序
         // 处理sass中的变量：class名补全、局部class添加作用域class（主题色变量不要处理）
-        cont = cont.replace(/^([\.\w\d]+)/gm, `${sdkCls} $1`). // .开头的前面添加sdk的class作用域
-            replace(/&-/gm, `${sdkCls}-`).  // 包含 &- 的需要替换成sdk的class
+        cont = cont.replace(/^([\.\w\d]+)/gm, `div${sdkCls} $1`). // .开头的前面添加sdk的class作用域
+            replace(/&-/gm, `div${sdkCls}-`).  // 包含 &- 的需要替换成sdk的class
             replace(/&/gm, sdkCls);
         let arr = cont.split('\n');
 
@@ -86,7 +86,7 @@ const updateEnterVar = () => {
     for (let i = 0, len = arr.length; i < len; i++) {
         const str = arr[i];
         if (/\s+const\s+path\s+=\s+/gmi.test(str)) {
-            arr[i] = `    const path = '${VUE_PUBLIC_PATH}', env = '${VUE_ENV}', sdkName = '${VUE_APP_SDKNAME}', sdkId = '${sdkId}', ts = ${Date.now()};`;
+            arr[i] = `    const path = '${VUE_PUBLIC_PATH}', env = '${VUE_APP_ENV}', sdkName = '${VUE_APP_SDKNAME}', sdkId = '${sdkId}', ts = ${Date.now()};`;
             break;
         }
     }

@@ -36,7 +36,7 @@ let { env } = argsMap;
 Object.assign(process.env, settings[env]);
 
 let { VUE_PUBLIC_PATH, VUE_APP_BASEURL } = process.env;
-process.env.VUE_ENV = env;
+process.env.VUE_APP_ENV = env;
 process.env.VUE_APP_SDKID = npm_package_sdkId;
 process.env.VUE_APP_SDKNAME = npm_package_sdkName;
 console.log(VUE_APP_BASEURL, VUE_PUBLIC_PATH, env);
