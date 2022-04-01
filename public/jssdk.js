@@ -4,7 +4,7 @@
  */
 
 (function () {
-    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1648606449471;
+    const path = '//test.com:8096/', env = 'local', sdkName = '__JSSDK__', sdkId = 'jssdk-001', ts = 1648779170971;
     const isLocal = env === 'local', isTest = env === 'test', isProd = env === 'prod';
     // 最终打包出来的js和css文件，只引入口文件，根据实际打包出来的文件动态配置
     !isProd && console.log('jssdk版本：', new Date(ts).toLocaleString('zh'));

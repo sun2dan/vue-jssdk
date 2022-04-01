@@ -61,9 +61,17 @@ export default {
 
       let eles = document.querySelectorAll("style");
       for (let i = eles.length - 1; i >= 0; i--) {
-        let style = document.createElement("style");
-        style.innerText = eles[i].innerText;
-        window.__JSSDK_BOX.appendChild(style);
+        let id = `style_${i}`;
+        let style = window.__JSSDK_BOX.querySelector(`#${id}`);
+        if (!style) {
+          style = document.createElement("style");
+          window.__JSSDK_BOX.appendChild(style);
+        }
+        style.id = id;
+        let txt = utils.removeBlanks(eles[i].innerText);
+        if (!txt) continue;
+        if (utils.removeBlanks(style.innerText) === txt) continue;
+        style.innerHTML = txt;
       }
     },
 
